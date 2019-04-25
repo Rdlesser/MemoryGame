@@ -2,15 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4f414d2-d155-4619-88fc-3b6fd0a2a337" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Library/InspectorExpandedItems.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Library/InspectorExpandedItems.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MemoryGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MemoryGame/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MemoryGame/Scripts/GameConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MemoryGame/Scripts/GameConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MemoryGame/Scripts/GameRunnerLogics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MemoryGame/Scripts/GameRunnerLogics.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/CrashedAssetImports.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/ProtocolInstance.json" beforeDir="false" afterPath="$PROJECT_DIR$/Library/ProtocolInstance.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/ScriptAssemblies/Assembly-CSharp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Library/ScriptAssemblies/Assembly-CSharp.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/ScriptAssemblies/Assembly-CSharp.dll.mdb" beforeDir="false" afterPath="$PROJECT_DIR$/Library/ScriptAssemblies/Assembly-CSharp.dll.mdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/ScriptAssemblies/BuiltinAssemblies.stamp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/assetDatabase3" beforeDir="false" afterPath="$PROJECT_DIR$/Library/assetDatabase3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/metadata/00/0000000000000000a100000000000000" beforeDir="false" afterPath="$PROJECT_DIR$/Library/metadata/00/0000000000000000a100000000000000" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/metadata/00/0000000000000000c000000000000000" beforeDir="false" afterPath="$PROJECT_DIR$/Library/metadata/00/0000000000000000c000000000000000" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/shadercompiler-UnityShaderCompiler0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Library/shadercompiler-UnityShaderCompiler0.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MemoryGame.sln" beforeDir="false" afterPath="$PROJECT_DIR$/MemoryGame.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/metadata/4d/4de661e603224493da9a0739122d1dac" beforeDir="false" afterPath="$PROJECT_DIR$/Library/metadata/4d/4de661e603224493da9a0739122d1dac" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/metadata/57/57e68ff9a3e2949a0807a6e4556ef07e" beforeDir="false" afterPath="$PROJECT_DIR$/Library/metadata/57/57e68ff9a3e2949a0807a6e4556ef07e" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,12 +39,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/MemoryGame/Scripts/GameRunnerLogics.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+            <state relative-caret-position="403">
+              <caret line="40" column="35" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
               <folding>
-                <marker date="1556187514209" expanded="false" signature="6:78" ph="..." />
-                <marker date="1556187514209" expanded="true" signature="125:302" ph="{...}" />
-                <marker date="1556187514209" expanded="true" signature="216:300" ph="{...}" />
+                <marker date="1556188908684" expanded="true" signature="6:97" ph="..." />
+                <marker date="1556188908684" expanded="true" signature="144:1025" ph="{...}" />
+                <marker date="1556188908684" expanded="true" signature="294:454" ph="{...}" />
+                <marker date="1556188908684" expanded="true" signature="481:1023" ph="{...}" />
+                <marker date="1556188908684" expanded="true" signature="679:782" ph="{...}" />
+                <marker date="1556188908684" expanded="true" signature="732:778" ph="{...}" />
+                <marker date="1556188908684" expanded="true" signature="909:1020" ph="{...}" />
+                <marker date="1556188908684" expanded="true" signature="949:1016" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -51,14 +58,14 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/MemoryGame/Scripts/GameConfig.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="9" column="27" lean-forward="true" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+            <state relative-caret-position="208">
+              <caret line="17" column="73" selection-start-line="17" selection-start-column="59" selection-end-line="17" selection-end-column="73" />
               <folding>
-                <marker date="1556187435997" expanded="false" signature="6:78" ph="..." />
-                <marker date="1556187435997" expanded="true" signature="119:205" ph="{...}" />
-                <marker date="1556187435997" expanded="true" signature="252:331" ph="{...}" />
-                <marker date="1556187435997" expanded="true" signature="382:435" ph="{...}" />
-                <marker date="1556187435997" expanded="true" signature="454:529" ph="{...}" />
+                <marker date="1556187729913" expanded="false" signature="6:78" ph="..." />
+                <marker date="1556187729913" expanded="true" signature="119:244" ph="{...}" />
+                <marker date="1556187729913" expanded="true" signature="291:370" ph="{...}" />
+                <marker date="1556187729913" expanded="true" signature="421:474" ph="{...}" />
+                <marker date="1556187729913" expanded="true" signature="493:568" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -94,8 +101,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/MemoryGame/Scripts/GameRunnerGraphics.cs" />
-        <option value="$PROJECT_DIR$/Assets/MemoryGame/Scripts/GameConfig.cs" />
         <option value="$PROJECT_DIR$/Assets/MemoryGame/Scripts/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/MemoryGame/Scripts/GameConfig.cs" />
         <option value="$PROJECT_DIR$/Assets/MemoryGame/Scripts/GameRunnerLogics.cs" />
       </list>
     </option>
@@ -187,12 +194,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1556185069555</updated>
-      <workItem from="1556185071151" duration="2434000" />
+      <workItem from="1556185071151" duration="3803000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2434000" />
+    <option name="totallyTimeSpent" value="3803000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -264,20 +271,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/MemoryGame/Scripts/GameConfig.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="9" column="27" lean-forward="true" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-          <folding>
-            <marker date="1556187435997" expanded="false" signature="6:78" ph="..." />
-            <marker date="1556187435997" expanded="true" signature="119:205" ph="{...}" />
-            <marker date="1556187435997" expanded="true" signature="252:331" ph="{...}" />
-            <marker date="1556187435997" expanded="true" signature="382:435" ph="{...}" />
-            <marker date="1556187435997" expanded="true" signature="454:529" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/MemoryGame/Scripts/GameManager.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -290,14 +283,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/MemoryGame/Scripts/GameConfig.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="17" column="73" selection-start-line="17" selection-start-column="59" selection-end-line="17" selection-end-column="73" />
+          <folding>
+            <marker date="1556187729913" expanded="false" signature="6:78" ph="..." />
+            <marker date="1556187729913" expanded="true" signature="119:244" ph="{...}" />
+            <marker date="1556187729913" expanded="true" signature="291:370" ph="{...}" />
+            <marker date="1556187729913" expanded="true" signature="421:474" ph="{...}" />
+            <marker date="1556187729913" expanded="true" signature="493:568" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/MemoryGame/Scripts/GameRunnerLogics.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+        <state relative-caret-position="403">
+          <caret line="40" column="35" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
           <folding>
-            <marker date="1556187514209" expanded="false" signature="6:78" ph="..." />
-            <marker date="1556187514209" expanded="true" signature="125:302" ph="{...}" />
-            <marker date="1556187514209" expanded="true" signature="216:300" ph="{...}" />
+            <marker date="1556188908684" expanded="true" signature="6:97" ph="..." />
+            <marker date="1556188908684" expanded="true" signature="144:1025" ph="{...}" />
+            <marker date="1556188908684" expanded="true" signature="294:454" ph="{...}" />
+            <marker date="1556188908684" expanded="true" signature="481:1023" ph="{...}" />
+            <marker date="1556188908684" expanded="true" signature="679:782" ph="{...}" />
+            <marker date="1556188908684" expanded="true" signature="732:778" ph="{...}" />
+            <marker date="1556188908684" expanded="true" signature="909:1020" ph="{...}" />
+            <marker date="1556188908684" expanded="true" signature="949:1016" ph="{...}" />
           </folding>
         </state>
       </provider>

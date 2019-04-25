@@ -8,6 +8,7 @@ public class GameConfig : MonoBehaviour
 	public CardConfig cardConfig;
 	public int boardWidth;
 	public int boardHeight;
+	public bool allowRepetitions = false;
 
 }
 
