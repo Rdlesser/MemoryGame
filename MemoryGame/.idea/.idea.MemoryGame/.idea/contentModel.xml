@@ -4,7 +4,137 @@
     <e p="$USER_HOME$/Library/Caches/Rider2018.3/extResources" t="IncludeRecursive" />
     <e p="$USER_HOME$/Library/Caches/Rider2018.3/resharper-host/local/Transient/ReSharperHost/v183/SolutionCaches/_MemoryGame.-909761762.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets/GoKit-master" t="Include">
+        <e p="Assets" t="Include">
+          <e p="Demo" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="BaseDemoGUI.cs" t="Include" />
+              <e p="FPSHUD.cs" t="Include" />
+              <e p="GoKitSplineTest.cs" t="Include" />
+              <e p="PathTweenGUI.cs" t="Include" />
+              <e p="ShakeVariantsGUI.cs" t="Include" />
+              <e p="SimpleTween.cs" t="Include" />
+              <e p="StressTestGUI.cs" t="Include" />
+              <e p="TweenChainGUI.cs" t="Include" />
+              <e p="TweenFlowGUI.cs" t="Include" />
+              <e p="UnityGUITween.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Editor" t="Include">
+            <e p="GoDummyPathEditor.cs" t="Include" />
+          </e>
+          <e p="Plugins" t="Include">
+            <e p="GoKit" t="Include">
+              <e p="base" t="Include">
+                <e p="AbstractGoTween.cs" t="Include" />
+                <e p="AbstractGoTweenCollection.cs" t="Include" />
+              </e>
+              <e p="easing" t="Include">
+                <e p="easeEquationsLicense.txt" t="Include" />
+                <e p="GoEaseAnimationCurve.cs" t="Include" />
+                <e p="GoEaseBack.cs" t="Include" />
+                <e p="GoEaseBounce.cs" t="Include" />
+                <e p="GoEaseCircular.cs" t="Include" />
+                <e p="GoEaseCubic.cs" t="Include" />
+                <e p="GoEaseElastic.cs" t="Include" />
+                <e p="GoEaseExponential.cs" t="Include" />
+                <e p="GoEaseLinear.cs" t="Include" />
+                <e p="GoEaseQuadratic.cs" t="Include" />
+                <e p="GoEaseQuartic.cs" t="Include" />
+                <e p="GoEaseQuintic.cs" t="Include" />
+                <e p="GoEaseSinusoidal.cs" t="Include" />
+              </e>
+              <e p="enums" t="Include">
+                <e p="GoDuplicatePropertyRuleType.cs" t="Include" />
+                <e p="GoEaseType.cs" t="Include" />
+                <e p="GoLogLevel.cs" t="Include" />
+                <e p="GoLookAtType.cs" t="Include" />
+                <e p="GoLoopType.cs" t="Include" />
+                <e p="GoShakeType.cs" t="Include" />
+                <e p="GoSplineType.cs" t="Include" />
+                <e p="GoTweenState.cs" t="Include" />
+                <e p="GoUpdateType.cs" t="Include" />
+              </e>
+              <e p="extensions" t="Include">
+                <e p="GoKitTweenExtensions.cs" t="Include" />
+              </e>
+              <e p="Go.cs" t="Include" />
+              <e p="GoDummyPath.cs" t="Include" />
+              <e p="GoProxyProp.cs" t="Include" />
+              <e p="GoTween.cs" t="Include" />
+              <e p="GoTweenChain.cs" t="Include" />
+              <e p="GoTweenCollectionConfig.cs" t="Include" />
+              <e p="GoTweenConfig.cs" t="Include" />
+              <e p="GoTweenFlow.cs" t="Include" />
+              <e p="properties" t="Include">
+                <e p="abstracts" t="Include">
+                  <e p="AbstractMaterialColorTweenProperty.cs" t="Include" />
+                  <e p="AbstractMaterialFloatTweenProperty.cs" t="Include" />
+                  <e p="AbstractMaterialVectorTweenProperty.cs" t="Include" />
+                  <e p="AbstractOffsetTweenProperty.cs" t="Include" />
+                  <e p="AbstractQuaternionTweenProperty.cs" t="Include" />
+                  <e p="AbstractTweenProperty.cs" t="Include" />
+                  <e p="AbstractVector3TweenProperty.cs" t="Include" />
+                </e>
+                <e p="genericTypes" t="Include">
+                  <e p="ActionTweenProperty.cs" t="Include" />
+                  <e p="ColorTweenProperty.cs" t="Include" />
+                  <e p="FloatTweenProperty.cs" t="Include" />
+                  <e p="IGenericProperty.cs" t="Include" />
+                  <e p="IntTweenProperty.cs" t="Include" />
+                  <e p="Vector2TweenProperty.cs" t="Include" />
+                  <e p="Vector3PathTweenProperty.cs" t="Include" />
+                  <e p="Vector3TweenProperty.cs" t="Include" />
+                  <e p="Vector3XTweenProperty.cs" t="Include" />
+                  <e p="Vector3YTweenProperty.cs" t="Include" />
+                  <e p="Vector3ZTweenProperty.cs" t="Include" />
+                  <e p="Vector4TweenProperty.cs" t="Include" />
+                </e>
+                <e p="GoTweenUtils.cs" t="Include" />
+                <e p="smoothing" t="Include">
+                  <e p="GoSmoothedQuaternion.cs" t="Include" />
+                  <e p="GoSmoothedVector3.cs" t="Include" />
+                  <e p="GoSmoothingType.cs" t="Include" />
+                </e>
+                <e p="specificTypes" t="Include">
+                  <e p="AnchoredPosition3DTweenProperty.cs" t="Include" />
+                  <e p="AnchoredPositionTweenProperty.cs" t="Include" />
+                  <e p="AnchorMaxTweenProperty.cs" t="Include" />
+                  <e p="AnchorMinTweenProperty.cs" t="Include" />
+                  <e p="EulerAnglesTweenProperty.cs" t="Include" />
+                  <e p="MaterialColorTweenProperty.cs" t="Include" />
+                  <e p="MaterialFloatTweenProperty.cs" t="Include" />
+                  <e p="MaterialVectorTweenProperty.cs" t="Include" />
+                  <e p="OffsetMaxTweenProperty.cs" t="Include" />
+                  <e p="OffsetMinTweenProperty.cs" t="Include" />
+                  <e p="PivotTweenProperty.cs" t="Include" />
+                  <e p="PositionPathTweenProperty.cs" t="Include" />
+                  <e p="PositionTweenProperty.cs" t="Include" />
+                  <e p="RotationQuaternionTweenProperty.cs" t="Include" />
+                  <e p="RotationTweenProperty.cs" t="Include" />
+                  <e p="ScalePathTweenProperty.cs" t="Include" />
+                  <e p="ScaleTweenProperty.cs" t="Include" />
+                  <e p="ShakeTweenProperty.cs" t="Include" />
+                  <e p="SizeDeltaTweenProperty.cs" t="Include" />
+                </e>
+                <e p="splines" t="Include">
+                  <e p="AbstractGoSplineSolver.cs" t="Include" />
+                  <e p="GoSpline.cs" t="Include" />
+                  <e p="GoSplineCatmullRomSolver.cs" t="Include" />
+                  <e p="GoSplineCubicBezierSolver.cs" t="Include" />
+                  <e p="GoSplineQuadraticBezierSolver.cs" t="Include" />
+                  <e p="GoSplineStraightLineSolver.cs" t="Include" />
+                </e>
+              </e>
+            </e>
+          </e>
+        </e>
+        <e p="ProjectSettings" t="Include">
+          <e p="ProjectVersion.txt" t="Include" />
+        </e>
+      </e>
       <e p="Assets/MemoryGame" t="Include">
         <e p="Scripts" t="Include">
           <e p="GameConfig.cs" t="Include" />
