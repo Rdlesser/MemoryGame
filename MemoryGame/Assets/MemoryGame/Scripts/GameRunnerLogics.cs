@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class GameRunnerLogics : MonoBehaviour
+public class GameRunnerLogics
 {
 	private int width;
 	private int height;
@@ -48,4 +48,5 @@ public class GameRunnerLogics : MonoBehaviour
 	{
 		return board;
 	}
+
 }

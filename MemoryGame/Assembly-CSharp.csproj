@@ -157,6 +157,7 @@
     <Compile Include="Assets\GoKit-master\Assets\Plugins\GoKit\properties\splines\GoSplineCubicBezierSolver.cs" />
     <Compile Include="Assets\GoKit-master\Assets\Plugins\GoKit\properties\splines\GoSplineQuadraticBezierSolver.cs" />
     <Compile Include="Assets\GoKit-master\Assets\Plugins\GoKit\properties\splines\GoSplineStraightLineSolver.cs" />
+    <Compile Include="Assets\MemoryGame\Scripts\Card.cs" />
     <Compile Include="Assets\MemoryGame\Scripts\GameConfig.cs" />
     <Compile Include="Assets\MemoryGame\Scripts\GameManager.cs" />
     <Compile Include="Assets\MemoryGame\Scripts\GameRunnerGraphics.cs" />

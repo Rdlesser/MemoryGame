@@ -1,15 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameRunnerGraphics: MonoBehaviour
 {
 
+	public Action OnTimerEnded;
+
 	[SerializeField] private Vector3 boardInstantiationPoint;
 	[SerializeField] private GameObject cardPrefab;
 	[SerializeField] private float cardMarginX;
 	[SerializeField] private float cardMarginY;
+	[SerializeField] private Text timerText;
+	private bool finished = false;
 
 	private float cardHeight;
 	private float cardWidth;
@@ -44,5 +49,42 @@ public class GameRunnerGraphics: MonoBehaviour
 		// this will call card.getType and return it to the gamemanager.
 		card.gameObject.SetActive((false));
 		Debug.LogError("Card Clicked!");
+	}
+
+	public void StartClock(float targetTime)
+	{
+		timerText.text = FloatTimeToString(targetTime);
+		StartCoroutine(ClockRoutine(targetTime));
+	}
+
+	private string FloatTimeToString(float time)
+    {
+        string minutes = ((int) time / 60).ToString();
+        float secondsLeft = time % 60;
+        string seconds = secondsLeft.ToString("N0");
+
+        if (secondsLeft < 10)
+        {
+	        seconds = "0" + seconds;
+        }
+        
+        return minutes + ":" + seconds;
+    }
+
+	private IEnumerator ClockRoutine(float targetTime)
+	{
+		float timeLeft = targetTime;
+		while (timeLeft > 0)
+		{
+			yield return new WaitForSeconds(1);
+			timeLeft--;
+			timerText.text = FloatTimeToString(timeLeft);
+		}
+
+		if (OnTimerEnded != null)
+		{
+			OnTimerEnded.Invoke();
+		}
+		
 	}
 }
