@@ -42,4 +42,10 @@ public class GameRunnerLogics : MonoBehaviour
 			}
 		}
 	}
+
+
+	public eCard[,] GetBoard()
+	{
+		return board;
+	}
 }
