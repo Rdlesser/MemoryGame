@@ -7,57 +7,120 @@ using UnityEngine.UI;
 public class GameRunnerGraphics: MonoBehaviour
 {
 
-	public Action OnTimerEnded;
+    public Action OnTimerEnded;
+    public Action<eCard> cardClickAction;
 
-	[SerializeField] private Vector3 boardInstantiationPoint;
-	[SerializeField] private GameObject cardPrefab;
-	[SerializeField] private float cardMarginX;
-	[SerializeField] private float cardMarginY;
-	[SerializeField] private Text timerText;
-	private bool finished = false;
+    [SerializeField] private Vector3 boardInstantiationPoint;
+    [SerializeField] private GameObject cardPrefab;
+    [SerializeField] private float cardMarginX;
+    [SerializeField] private float cardMarginY;
+    [SerializeField] private Text timerText;
+    [SerializeField] private List<CardToImage> cardToImageList;
+    [SerializeField] private Sprite cardBack;
 
-	private float cardHeight;
-	private float cardWidth;
+    private bool isUserInputAllowed = true;
+    private bool finished = false;
+    private float cardHeight;
+    private float cardWidth;
 
-	public void InitializedEnvironment(eCard[,] board)
-	{
-		float boardInstantiationPointY = boardInstantiationPoint.y;
-		for (int i = 0; i < board.GetLength(0); i++)
-		{
-			for (int j = 0; j < board.GetLength(1); j++)
-			{
-				GameObject cardObject = Instantiate(cardPrefab, boardInstantiationPoint, Quaternion.identity, gameObject.transform);
-				cardObject.GetComponent<Button>().onClick.AddListener(() =>
-				{
-					OnCardClick(cardObject);
-				});
-				cardHeight = cardObject.GetComponent<Image>().sprite.rect.height;
-				cardWidth = cardObject.GetComponent<Image>().sprite.rect.width;
-				float distanceY = cardHeight + cardMarginY;
-				Vector3 movementVector = new Vector3(0, - distanceY, 0);
-				boardInstantiationPoint += movementVector;
-			}
+    private GameObject firstCardChoice;
+    private GameObject secondCardChoice;
 
-			float distanceX = cardWidth + cardMarginX;
-			boardInstantiationPoint = new Vector3(boardInstantiationPoint.x + distanceX, boardInstantiationPointY, boardInstantiationPoint.z);
-		}
-	}
+    private List<GameObject> cardCollection;
 
-	public void OnCardClick(GameObject card)
-	{
-		// TODO: call card script to be added to the prefab.
-		// this will call card.getType and return it to the gamemanager.
-		card.gameObject.SetActive((false));
-		Debug.LogError("Card Clicked!");
-	}
+    private Coroutine timerRoutine;
 
-	public void StartClock(float targetTime)
-	{
-		timerText.text = FloatTimeToString(targetTime);
-		StartCoroutine(ClockRoutine(targetTime));
-	}
+    public void InitializedEnvironment(eCard[,] board)
+    {
+        if (cardCollection != null)
+        {
+            for (int i = 0; i < cardCollection.Count; i++)
+            {
+                Destroy(cardCollection[i]);
+            }
+        }
 
-	private string FloatTimeToString(float time)
+        Vector3 cardInstantiationPoint = boardInstantiationPoint;
+        float boardInstantiationPointY = cardInstantiationPoint.y;
+        cardCollection = new List<GameObject>();
+        for (int i = 0; i < board.GetLength(0); i++)
+        {
+            for (int j = 0; j < board.GetLength(1); j++)
+            {
+                GameObject cardObject = Instantiate(cardPrefab, cardInstantiationPoint,
+                    Quaternion.identity, gameObject.transform);
+                cardObject.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    OnCardClick(cardObject);
+                });
+                Card cardScript = cardObject.GetComponent<Card>();
+                cardScript.cardType = board[i, j];
+                cardScript.cardImage = GetImageForType(cardScript.cardType);
+                Image cardImage = cardObject.GetComponent<Image>();
+                cardHeight = cardImage.sprite.rect.height;
+                cardWidth = cardImage.sprite.rect.width;
+                cardCollection.Add(cardObject);
+                float distanceY = cardHeight + cardMarginY;
+                Vector3 movementVector = new Vector3(0, - distanceY, 0);
+                cardInstantiationPoint += movementVector;
+            }
+
+            float distanceX = cardWidth + cardMarginX;
+            cardInstantiationPoint = new Vector3(cardInstantiationPoint.x + distanceX, 
+                boardInstantiationPointY, cardInstantiationPoint.z);
+        }
+    }
+
+    private Sprite GetImageForType(eCard cardScriptCardType)
+    {
+        foreach (var cardImagePair in cardToImageList)
+        {
+            if (cardImagePair.cardType == cardScriptCardType)
+            {
+                return cardImagePair.cardImage;
+            }			
+        }
+
+        return null;
+    }
+
+    public void OnCardClick(GameObject card)
+    {
+        if (!isUserInputAllowed)
+        {
+            return;
+        }
+
+        // TODO: call card script to be added to the prefab.
+        // this will call card.getType and return it to the gamemanager.
+        // TODO: card click animation
+        // TODO: change sprite to appropriate sprite
+        // TODO: play card flip sound
+        card.GetComponent<Button>().enabled = false;
+        card.GetComponent<Image>().sprite = card.GetComponent<Card>().cardImage;
+        if (firstCardChoice == null)
+        {
+            firstCardChoice = card;
+        }
+        else
+        {
+            secondCardChoice = card;
+            AllowUserInput(false);
+        }
+        if (cardClickAction != null)
+        {
+            cardClickAction.Invoke(card.GetComponent<Card>().cardType);
+        }
+    }
+
+    public void StartClock(float targetTime)
+    {
+        timerText.gameObject.SetActive(true);
+        timerText.text = FloatTimeToString(targetTime);
+        timerRoutine = StartCoroutine(ClockRoutine(targetTime));
+    }
+
+    private string FloatTimeToString(float time)
     {
         string minutes = ((int) time / 60).ToString();
         float secondsLeft = time % 60;
@@ -65,26 +128,77 @@ public class GameRunnerGraphics: MonoBehaviour
 
         if (secondsLeft < 10)
         {
-	        seconds = "0" + seconds;
+            seconds = "0" + seconds;
         }
         
         return minutes + ":" + seconds;
     }
 
-	private IEnumerator ClockRoutine(float targetTime)
-	{
-		float timeLeft = targetTime;
-		while (timeLeft > 0)
-		{
-			yield return new WaitForSeconds(1);
-			timeLeft--;
-			timerText.text = FloatTimeToString(timeLeft);
-		}
+    private IEnumerator ClockRoutine(float targetTime)
+    {
+        float timeLeft = targetTime;
+        while (timeLeft > 0)
+        {
+            yield return new WaitForSeconds(1);
+            timeLeft--;
+            timerText.text = FloatTimeToString(timeLeft);
+        }
 
-		if (OnTimerEnded != null)
-		{
-			OnTimerEnded.Invoke();
-		}
+        if (OnTimerEnded != null)
+        {
+            OnTimerEnded.Invoke();
+        }
 		
-	}
+    }
+
+    public void OnMatchFailed()
+    {
+        StartCoroutine(OnMatchFailedRoutine());
+    }
+
+    IEnumerator OnMatchFailedRoutine()
+    {
+        yield return new WaitForSeconds(1.2f);
+        firstCardChoice.GetComponent<Image>().sprite = cardBack;
+        firstCardChoice.GetComponent<Button>().enabled = true;
+		
+        secondCardChoice.GetComponent<Image>().sprite = cardBack;
+        secondCardChoice.GetComponent<Button>().enabled = true;
+		
+        ResetChoices();
+		
+    }
+
+    public void ResetChoices()
+    {
+        firstCardChoice = null;
+        secondCardChoice = null;
+
+        AllowUserInput(true);
+    }
+
+    public void AllowUserInput(bool allow)
+    {
+        isUserInputAllowed = allow;
+    }
+
+    public void OnGameEnd(bool hasWon)
+    {
+        if (hasWon && timerRoutine != null)
+        {
+            StopCoroutine(timerRoutine);
+        }
+        timerText.gameObject.SetActive(false);
+        foreach (var card in cardCollection)
+        {
+            card.SetActive(false);
+        }
+    }
+}
+
+[System.Serializable]
+public class CardToImage
+{
+    public Sprite cardImage;
+    public eCard cardType;
 }

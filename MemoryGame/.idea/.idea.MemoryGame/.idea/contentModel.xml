@@ -137,10 +137,12 @@
       </e>
       <e p="Assets/MemoryGame" t="Include">
         <e p="Scripts" t="Include">
+          <e p="Card.cs" t="Include" />
           <e p="GameConfig.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="GameRunnerGraphics.cs" t="Include" />
           <e p="GameRunnerLogics.cs" t="Include" />
+          <e p="UIManager.cs" t="Include" />
         </e>
       </e>
       <e p="Library" t="ExcludeRecursive" />

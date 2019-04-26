@@ -1,7 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameRunnerLogics
 {
@@ -9,8 +10,14 @@ public class GameRunnerLogics
 	private int height;
 	private eCard[,] board;
 	private GameConfig gameConfig;
-	
-	public GameRunnerLogics(GameConfig gameConfig)
+	private bool isFirstChoice = true;
+	private eCard firstChoice;
+	private eCard secondChoice;
+	public Action<bool> OnMatch;
+
+	private int requiredMatchesToWin;
+
+	public void InitializeGameLogic(GameConfig gameConfig)
 	{
 		width = gameConfig.boardWidth;
 		height = gameConfig.boardHeight;
@@ -18,6 +25,7 @@ public class GameRunnerLogics
 		
 		board = new eCard[width, height];
 		FillBoard();
+		requiredMatchesToWin = width * height / 2;
 	}
 
 	private void FillBoard()
@@ -49,4 +57,35 @@ public class GameRunnerLogics
 		return board;
 	}
 
+	public void OnCardClicked(eCard cardType)
+	{
+		bool successfullMatch = false;
+		if (isFirstChoice)
+		{
+			firstChoice = cardType;
+			isFirstChoice = false;
+		}
+		else
+		{
+			secondChoice = cardType;
+			successfullMatch = firstChoice == secondChoice;
+			if (successfullMatch)
+			{
+				requiredMatchesToWin--;
+			}
+
+			if (OnMatch != null)
+			{
+				OnMatch.Invoke(successfullMatch);
+			}
+
+			isFirstChoice = true;
+
+		}
+	}
+
+	public bool HasPlayerWon()
+	{
+		return requiredMatchesToWin == 0;
+	}
 }

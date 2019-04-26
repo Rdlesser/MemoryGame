@@ -22,6 +22,7 @@ public class CardConfig
 public class cardDefinition
 {
 	public eCard cardType;
+	public Sprite cardImage;
 	public int appearences;
 }
 
