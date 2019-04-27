@@ -30,7 +30,7 @@ public class GameRunnerGraphics: MonoBehaviour
 
     private Coroutine timerRoutine;
 
-    public void InitializeEnvironment(eCard[,] board, string savedCardCollection = null, int time = -1)
+    public void InitializeEnvironment(eCard[,] board, string savedCardCollection = null)
     {
         if (cardCollection != null)
         {
@@ -100,7 +100,7 @@ public class GameRunnerGraphics: MonoBehaviour
                         cardObject.GetComponent<Image>().sprite = cardObject.GetComponent<Card>().cardImage;
                         cardObject.GetComponent<Button>().enabled = false;
                     }
-                    
+                    cardCollection.Add(cardObject);
                     float distanceY = cardHeight + cardMarginY;
                     Vector3 movementVector = new Vector3(0, - distanceY, 0);
                     cardInstantiationPoint += movementVector;

@@ -43,14 +43,23 @@ public class GameManager : MonoBehaviour
 	private void LoadGame(int time, string cardCollection)
 	{
 		gameRunnerLogics.InitializeGameLogic(gameConfig, cardCollection);
-		gameRunnerGraphics.InitializeEnvironment(gameRunnerLogics.GetBoard(), cardCollection, time);
+		gameRunnerGraphics.InitializeEnvironment(gameRunnerLogics.GetBoard(), cardCollection);
 		gameRunnerGraphics.StopClock();
-		StartClock();
+		StartClock(time);
 	}
 
-	private void StartClock()
+	private void StartClock(int time = -1)
 	{
 		gameRunnerGraphics.OnTimerEnded += OnTimerEnded;
+		float targetTime;
+		if (time > 0)
+		{
+			targetTime = time;
+		}
+		else
+		{
+			targetTime = gameConfig.targetTime;
+		}
 		gameRunnerGraphics.StartClock(gameConfig.targetTime);
 	}
 
@@ -98,10 +107,12 @@ public class GameManager : MonoBehaviour
 		if (isSettingsShowing && !uIManager.IsMenuActive())
 		{
 			timeRemaining = gameRunnerGraphics.StopClock();
+			gameRunnerGraphics.AllowUserInput(false);
 		}
 		else if (!isSettingsShowing && !uIManager.IsMenuActive())
 		{
 			gameRunnerGraphics.StartClock(timeRemaining);
+			gameRunnerGraphics.AllowUserInput(true);
 		}
 	}
 

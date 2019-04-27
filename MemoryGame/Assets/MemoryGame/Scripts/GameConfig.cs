@@ -9,7 +9,7 @@ public class GameConfig : MonoBehaviour
 	public int boardWidth;
 	public int boardHeight;
 	public bool allowRepetitions = false;
-	public float targetTime = 60.0f;
+	public int targetTime = 30;
 
 	public bool shouldSaveDataPersistently;
 }
