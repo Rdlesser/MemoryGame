@@ -5,6 +5,9 @@ using System.Linq;
 using NUnit.Framework;
 using Random = UnityEngine.Random;
 
+/*
+ * Game logics
+ */
 public class GameRunnerLogics
 {
 	private int width;
@@ -56,6 +59,7 @@ public class GameRunnerLogics
 	private void FillBoard(List<eCard> cardCollection = null)
 	{
 		List<eCard> allCards;
+		// Fill the board with new cards
 		if (cardCollection == null)
 		{
 			allCards = new List<eCard>();
@@ -71,6 +75,7 @@ public class GameRunnerLogics
 			allCards = allCards.OrderBy( x => Random.value ).ToList( );
 			
 		}
+		// Fill the board with a given set of cards (load game)
 		else
 		{
 			allCards = cardCollection;
@@ -79,6 +84,7 @@ public class GameRunnerLogics
 		{
 			for (int j = 0; j < height; j++)
 			{
+				// Layout the cards on the board
 				board[i, j] = allCards[0];
 				allCards.RemoveAt(0);
 			}

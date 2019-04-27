@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * A class representing a card
+ */
 public class Card : MonoBehaviour
 {
 

@@ -40,6 +40,7 @@ public class GameRunnerGraphics: MonoBehaviour
             }
         }
 
+        // Use a tem instantiation point
         Vector3 cardInstantiationPoint = boardInstantiationPoint;
         float boardInstantiationPointY = cardInstantiationPoint.y;
         cardCollection = new List<GameObject>();
@@ -52,6 +53,7 @@ public class GameRunnerGraphics: MonoBehaviour
             {
                 for (int j = 0; j < board.GetLength(1); j++)
                 {
+                    // For each card space in our game - instantiate a card
                     GameObject cardObject = Instantiate(cardPrefab, cardInstantiationPoint,
                         Quaternion.identity, gameObject.transform);
                     cardObject.GetComponent<Button>().onClick.AddListener(() =>
@@ -59,23 +61,30 @@ public class GameRunnerGraphics: MonoBehaviour
                         OnCardClick(cardObject);
                     });
                     Card cardScript = cardObject.GetComponent<Card>();
+                    
+                    // Set the card properties
                     cardScript.cardType = board[i, j];
                     cardScript.cardImage = GetImageForType(cardScript.cardType);
                     cardScript.isFlipped = false;
+                    
                     Image cardImage = cardObject.GetComponent<Image>();
                     cardHeight = cardImage.sprite.rect.height;
                     cardWidth = cardImage.sprite.rect.width;
                     cardCollection.Add(cardObject);
+                    
+                    // Calculate the distance in Y axis - where we will instantiate the next card
                     float distanceY = cardHeight + cardMarginY;
                     Vector3 movementVector = new Vector3(0, - distanceY, 0);
                     cardInstantiationPoint += movementVector;
                 }
     
+                // Calculate the dinstance in X axis - where we will instantiate the next card
                 float distanceX = cardWidth + cardMarginX;
                 cardInstantiationPoint = new Vector3(cardInstantiationPoint.x + distanceX, 
                     boardInstantiationPointY, cardInstantiationPoint.z);
             }
         }
+        // Case of using a given board (load game)
         else
         {
             bool[,] cardStates = ParseCardStatesFromString(board.GetLength(0),
@@ -85,16 +94,20 @@ public class GameRunnerGraphics: MonoBehaviour
             {
                 for (int j = 0; j < board.GetLength(1); j++)
                 {
+                    // For each card space in our game - instantiate a card
                     GameObject cardObject = Instantiate(cardPrefab, cardInstantiationPoint,
                         Quaternion.identity, gameObject.transform);
                     cardObject.GetComponent<Button>().onClick.AddListener(() =>
                     {
                         OnCardClick(cardObject);
                     });
+                    // Set the card properties accordig to our saved game
                     Card cardScript = cardObject.GetComponent<Card>();
                     cardScript.cardType = board[i, j];
                     cardScript.cardImage = GetImageForType(cardScript.cardType);
                     cardScript.isFlipped = cardStates[i, j];
+                    
+                    // In case the card was flipped in our saved game
                     if (cardStates[i, j])
                     {
                         cardObject.GetComponent<Image>().sprite = cardObject.GetComponent<Card>().cardImage;
@@ -157,20 +170,23 @@ public class GameRunnerGraphics: MonoBehaviour
             return;
         }
 
+        // Change the card properties
         card.GetComponent<Button>().enabled = false;
-        
         card.GetComponent<Card>().isFlipped = true;
 
         PlayCardFlipAnimation(card);
         
+        // Case this is the player's first card choice out of 2
         if (firstCardChoice == null)
         {
             firstCardChoice = card;
             
         }
+        // Case this is the player's second card choice
         else
         {
             secondCardChoice = card;
+            // Prevent user input as we would like to take a second and allow the user to look at the flipped cards
             AllowUserInput(false);
         }
         if (cardClickAction != null)
@@ -219,6 +235,11 @@ public class GameRunnerGraphics: MonoBehaviour
         return StringTimeToInt(timerText.text);
     }
 
+    /*
+     * Returns a float representation of the time in the following format:
+     * "minutes:[0]seconds"
+     * such that for single digit seconds we add a preceding zero for cosmetic purposes
+     */
     private string FloatTimeToString(float time)
     {
         string minutes = ((int) time / 60).ToString();
@@ -233,6 +254,9 @@ public class GameRunnerGraphics: MonoBehaviour
         return minutes + ":" + seconds;
     }
 
+    /*
+     * Decrypt the string time to an int representation
+     */
     private int StringTimeToInt(string time)
     {
         int colonIndex = time.IndexOf(":");
@@ -246,13 +270,18 @@ public class GameRunnerGraphics: MonoBehaviour
 
     }
 
+    /*
+     * Clock Routine to be used for the timer
+     */
     private IEnumerator ClockRoutine(float targetTime)
     {
         float timeLeft = targetTime;
+        // Start count-down
         while (timeLeft > 0)
         {
             yield return new WaitForSeconds(1);
             timeLeft--;
+            // Set the timer text
             timerText.text = FloatTimeToString(timeLeft);
         }
 
@@ -285,6 +314,9 @@ public class GameRunnerGraphics: MonoBehaviour
         AllowUserInput(enableUserInput);
     }
 
+    /*
+     * Flip the player choices over to their back side
+     */
     public void FlipPlayerChoices()
     {
         if (firstCardChoice != null) 
@@ -316,12 +348,18 @@ public class GameRunnerGraphics: MonoBehaviour
             StopClock();
         }
         timerText.gameObject.SetActive(false);
+        
+        // Remove all cards from the screen so that the main menu does not collide with the cards
         foreach (var card in cardCollection)
         {
             card.SetActive(false);
         }
     }
 
+    /*
+     * Returns the card collection in the following format:
+     * "(card_type, is_flipped)"
+     */
     public string GetCardCollectionAsString()
     {
         string ans = "";

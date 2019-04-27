@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * Manager for the UI
+ */
 public class UIManager : MonoBehaviour
 {
 	private const string END_GAME_WIN_MSG = "YOU WON!";
@@ -37,6 +40,13 @@ public class UIManager : MonoBehaviour
 		}
 	}
 
+	public bool IsMenuActive()
+	{
+		return menu.activeSelf;
+	}
+	/*
+	 * Force remove the main menu
+	 */
 	public void RemoveMenu()
 	{
 		menu.SetActive(false);
@@ -45,26 +55,26 @@ public class UIManager : MonoBehaviour
 	public void OnGameEnd(bool hasWon)
 	{
 
+		// Set the text of the menu according to the game result
 		messageText.text = hasWon ? END_GAME_WIN_MSG : END_GAME_LOSE_MSG;
 		buttonText.text = RESTART;
 		menu.SetActive(true);
 	}
 
-	public bool IsMenuActive()
-	{
-		return menu.activeSelf;
-	}
 
 	public void OnSettingsClicked()
 	{
 		isSettingsShowing = !isSettingsShowing;
 		settingsScreen.SetActive(isSettingsShowing);
 		GameObject saveButton = settingsScreen.transform.Find(SAVE_BUTTON).gameObject;
+		
+		// Case of "settings" clicked from the main menu - don't show 'save game' option
 		if (IsMenuActive())
 		{
 			
 			saveButton.SetActive(false);
 		}
+		// Otherwise - show 'save game' option
 		else
 		{
 			saveButton.SetActive(true);

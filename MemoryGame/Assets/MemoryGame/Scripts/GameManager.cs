@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
 	{
 		gameRunnerLogics = new GameRunnerLogics();
 		gameDataManager = new GameDataManager(gameConfig.shouldSaveDataPersistently);
+		
+		//Add Listeners
 		uIManager.OnStartGame += StartGame;
 		gameRunnerGraphics.cardClickAction += OnCardClicked;
 		gameRunnerLogics.OnMatch += OnMatch;
@@ -46,21 +48,31 @@ public class GameManager : MonoBehaviour
 	{
 		gameRunnerLogics.InitializeGameLogic(gameConfig, cardCollection, requiredMatches);
 		gameRunnerGraphics.InitializeEnvironment(gameRunnerLogics.GetBoard(), cardCollection);
+		
+		// Stop the clock routine in case there is one
 		gameRunnerGraphics.StopClock();
+		// Force remove the main menu 
 		uIManager.RemoveMenu();
+		// Force close the settings menu 
 		uIManager.ForceCloseSettings();
+		// Force allow user input
 		gameRunnerGraphics.AllowUserInput(true);
+		// start a new clock routine with the loaded time
 		StartClock(time);
 	}
 
 	private void StartClock(int time = -1)
 	{
+		// Add a listener for a "timer ended" event
 		gameRunnerGraphics.OnTimerEnded += OnTimerEnded;
 		float targetTime;
+		
+		// If we sent a specific time - let that be the target time (case of load)
 		if (time > 0)
 		{
 			targetTime = time;
 		}
+		// Otherwise, set the time to the time set in the game configuration
 		else
 		{
 			targetTime = gameConfig.targetTime;
@@ -70,7 +82,9 @@ public class GameManager : MonoBehaviour
 
 	private void OnCardClicked(eCard cardType)
 	{
+		// Play the card flip sound
 		soundManager.OnCardFlipped();
+		// Run the card clip logics
 		gameRunnerLogics.OnCardClicked(cardType);
 	}
 
@@ -95,6 +109,7 @@ public class GameManager : MonoBehaviour
 
 	private void OnTimerEnded()
 	{
+		// End the game in a loss
 		EndGame(false);
 	}
 
@@ -103,8 +118,6 @@ public class GameManager : MonoBehaviour
 	{
 		gameRunnerGraphics.OnGameEnd(hasWon);
 		uIManager.OnGameEnd(hasWon);
-
-		Debug.LogError("Game Ended!");
 	}
 
 	public void OnSettingsClicked(bool isSettingsShowing)
