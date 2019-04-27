@@ -10,6 +10,8 @@ public class GameConfig : MonoBehaviour
 	public int boardHeight;
 	public bool allowRepetitions = false;
 	public float targetTime = 60.0f;
+
+	public bool shouldSaveDataPersistently;
 }
 
 [System.Serializable]

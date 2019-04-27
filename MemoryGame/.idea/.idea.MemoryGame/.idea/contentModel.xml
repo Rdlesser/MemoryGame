@@ -139,6 +139,7 @@
         <e p="Scripts" t="Include">
           <e p="Card.cs" t="Include" />
           <e p="GameConfig.cs" t="Include" />
+          <e p="GameDataManager.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="GameRunnerGraphics.cs" t="Include" />
           <e p="GameRunnerLogics.cs" t="Include" />

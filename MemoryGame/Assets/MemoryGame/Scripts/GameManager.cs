@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
 		uIManager.OnStartGame += StartGame;
 		gameRunnerGraphics.cardClickAction += OnCardClicked;
 		gameRunnerLogics.OnMatch += OnMatch;
+		uIManager.OnSaveAction += OnSave;
+		uIManager.OnLoadAction += OnLoad;
 		//todo: create game data savior 
 	}
 
@@ -75,5 +77,13 @@ public class GameManager : MonoBehaviour
 
 		Debug.LogError("Game Ended!");
 	}
-	
+
+	public void OnSave()
+	{
+	}
+
+	public void OnLoad()
+	{
+	}
+
 }

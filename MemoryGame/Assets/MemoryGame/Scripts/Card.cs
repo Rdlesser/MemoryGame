@@ -7,4 +7,6 @@ public class Card : MonoBehaviour
 
 	public eCard cardType { get; set; }
 	public Sprite cardImage { get; set; }
+	
+	public bool isFlipped { get; set; }
 }

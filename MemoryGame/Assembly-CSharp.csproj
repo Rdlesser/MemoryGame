@@ -159,6 +159,7 @@
     <Compile Include="Assets\GoKit-master\Assets\Plugins\GoKit\properties\splines\GoSplineStraightLineSolver.cs" />
     <Compile Include="Assets\MemoryGame\Scripts\Card.cs" />
     <Compile Include="Assets\MemoryGame\Scripts\GameConfig.cs" />
+    <Compile Include="Assets\MemoryGame\Scripts\GameDataManager.cs" />
     <Compile Include="Assets\MemoryGame\Scripts\GameManager.cs" />
     <Compile Include="Assets\MemoryGame\Scripts\GameRunnerGraphics.cs" />
     <Compile Include="Assets\MemoryGame\Scripts\GameRunnerLogics.cs" />
