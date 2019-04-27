@@ -37,6 +37,11 @@ public class UIManager : MonoBehaviour
 		}
 	}
 
+	public void RemoveMenu()
+	{
+		menu.SetActive(false);
+	}
+
 	public void OnGameEnd(bool hasWon)
 	{
 

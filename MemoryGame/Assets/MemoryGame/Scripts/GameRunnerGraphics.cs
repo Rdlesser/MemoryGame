@@ -250,24 +250,37 @@ public class GameRunnerGraphics: MonoBehaviour
     IEnumerator OnMatchFailedRoutine()
     {
         yield return new WaitForSeconds(1.2f);
-        firstCardChoice.GetComponent<Image>().sprite = cardBack;
-        firstCardChoice.GetComponent<Button>().enabled = true;
-        firstCardChoice.GetComponent<Card>().isFlipped = false;
-        
-        secondCardChoice.GetComponent<Image>().sprite = cardBack;
-        secondCardChoice.GetComponent<Button>().enabled = true;
-        secondCardChoice.GetComponent<Card>().isFlipped = false;
+        FlipPlayerChoices();
 		
         ResetChoices();
 		
     }
 
-    public void ResetChoices()
+    public void ResetChoices(bool enableUserInput = true)
     {
         firstCardChoice = null;
         secondCardChoice = null;
 
-        AllowUserInput(true);
+        AllowUserInput(enableUserInput);
+    }
+
+    public void FlipPlayerChoices()
+    {
+        if (firstCardChoice != null) 
+        {
+            firstCardChoice.GetComponent<Image>().sprite = cardBack;
+            firstCardChoice.GetComponent<Button>().enabled = true;
+            firstCardChoice.GetComponent<Card>().isFlipped = false;
+            
+            if (secondCardChoice != null) 
+            {
+                secondCardChoice.GetComponent<Image>().sprite = cardBack;
+                secondCardChoice.GetComponent<Button>().enabled = true;
+                secondCardChoice.GetComponent<Card>().isFlipped = false;
+            }
+        }
+
+        
     }
 
     public void AllowUserInput(bool allow)
@@ -305,6 +318,11 @@ public class GameRunnerGraphics: MonoBehaviour
         }
 
         return ans;
+    }
+
+    public int GetRemainingTime()
+    {
+        return StringTimeToInt(timerText.text);
     }
 }
 

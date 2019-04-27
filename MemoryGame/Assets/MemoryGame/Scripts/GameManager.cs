@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
 		gameRunnerLogics.InitializeGameLogic(gameConfig, cardCollection, requiredMatches);
 		gameRunnerGraphics.InitializeEnvironment(gameRunnerLogics.GetBoard(), cardCollection);
 		gameRunnerGraphics.StopClock();
+		uIManager.RemoveMenu();
 		uIManager.ForceCloseSettings();
 		gameRunnerGraphics.AllowUserInput(true);
 		StartClock(time);
@@ -68,7 +69,6 @@ public class GameManager : MonoBehaviour
 
 	private void OnCardClicked(eCard cardType)
 	{
-		
 		gameRunnerLogics.OnCardClicked(cardType);
 	}
 
@@ -121,6 +121,10 @@ public class GameManager : MonoBehaviour
 
 	public void OnSave()
 	{
+		gameRunnerGraphics.FlipPlayerChoices();
+		gameRunnerGraphics.ResetChoices(false);
+		gameRunnerLogics.ResetChoices();
+		timeRemaining = gameRunnerGraphics.GetRemainingTime();
 		gameDataManager.SaveInt(timeRemaining, TIME_REMAINING);
 		string cardCollection = gameRunnerGraphics.GetCardCollectionAsString();
 		gameDataManager.SaveString(cardCollection, CARD_COLLECTION);

@@ -118,6 +118,11 @@ public class GameRunnerLogics
 		}
 	}
 
+	public void ResetChoices()
+	{
+		isFirstChoice = true;
+	}
+
 	public bool HasPlayerWon()
 	{
 		return requiredMatchesToWin == 0;
