@@ -158,8 +158,11 @@ public class GameRunnerGraphics: MonoBehaviour
         }
 
         card.GetComponent<Button>().enabled = false;
-        card.GetComponent<Image>().sprite = card.GetComponent<Card>().cardImage;
+        
         card.GetComponent<Card>().isFlipped = true;
+
+        PlayCardFlipAnimation(card);
+        
         if (firstCardChoice == null)
         {
             firstCardChoice = card;
@@ -174,6 +177,29 @@ public class GameRunnerGraphics: MonoBehaviour
         {
             cardClickAction.Invoke(card.GetComponent<Card>().cardType);
         }
+    }
+
+    private void PlayCardFlipAnimation(GameObject card)
+    {
+        GoTweenChain tweenChain = new GoTweenChain ();
+        
+        ScaleTweenProperty tweenProperty = new ScaleTweenProperty (new Vector2(0f, 1f));
+        GoTweenConfig tweenConfig = new GoTweenConfig();
+        tweenConfig.addTweenProperty(tweenProperty);
+        GoTween tween = new GoTween(card.transform, 0.25f, tweenConfig, (t)=>{
+            card.GetComponent<Image>().sprite = card.GetComponent<Card>().cardImage;
+        });
+        tweenChain.append(tween);
+
+        ScaleTweenProperty tweenBackProperty = new ScaleTweenProperty (Vector2.one, false);
+        GoTweenConfig tweenBackConfig = new GoTweenConfig();
+        tweenBackConfig.addTweenProperty(tweenBackProperty);
+        GoTween tweenBack = new GoTween(card.transform, 0.25f, tweenBackConfig, (t)=>{
+            
+        });
+        tweenChain.append(tweenBack);
+
+        tweenChain.play ();
     }
 
     public void StartClock(float targetTime)
