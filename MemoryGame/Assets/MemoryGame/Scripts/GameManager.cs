@@ -3,35 +3,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.WSA;
 
 public class GameManager : MonoBehaviour
 {
 
-	private GameRunnerLogics gameRunnerLogics;
 	[SerializeField] private GameRunnerGraphics gameRunnerGraphics;
 	[SerializeField] private GameConfig gameConfig;
 	[SerializeField] private UIManager uIManager;
+
+	private const string TIME_REMAINING = "time";
+	private const string CARD_COLLECTION = "card_collection";
+	
+	private GameRunnerLogics gameRunnerLogics;
+	private GameDataManager gameDataManager;
+
+	private int timeRemaining;
 	
 	private void Awake()
 	{
 		gameRunnerLogics = new GameRunnerLogics();
+		gameDataManager = new GameDataManager(gameConfig.shouldSaveDataPersistently);
 		uIManager.OnStartGame += StartGame;
 		gameRunnerGraphics.cardClickAction += OnCardClicked;
 		gameRunnerLogics.OnMatch += OnMatch;
 		uIManager.OnSaveAction += OnSave;
 		uIManager.OnLoadAction += OnLoad;
-		//todo: create game data savior 
+		uIManager.OnSettingsAction += OnSettingsClicked;
 	}
 
 	private void StartGame()
 	{
-		//1. start a clock
-		//2. create main cycle (player choose a card, then choose another
-		//3. end game - 
 		gameRunnerLogics.InitializeGameLogic(gameConfig);
-		gameRunnerGraphics.InitializedEnvironment(gameRunnerLogics.GetBoard());
+		gameRunnerGraphics.InitializeEnvironment(gameRunnerLogics.GetBoard());
 		StartClock();
 	
+	}
+
+	private void LoadGame(int time, string cardCollection)
+	{
+		gameRunnerLogics.InitializeGameLogic(gameConfig, cardCollection);
+		gameRunnerGraphics.InitializeEnvironment(gameRunnerLogics.GetBoard(), cardCollection, time);
+		gameRunnerGraphics.StopClock();
+		StartClock();
 	}
 
 	private void StartClock()
@@ -42,6 +56,7 @@ public class GameManager : MonoBehaviour
 
 	private void OnCardClicked(eCard cardType)
 	{
+		
 		gameRunnerLogics.OnCardClicked(cardType);
 	}
 
@@ -78,12 +93,32 @@ public class GameManager : MonoBehaviour
 		Debug.LogError("Game Ended!");
 	}
 
+	public void OnSettingsClicked(bool isSettingsShowing)
+	{
+		if (isSettingsShowing && !uIManager.IsMenuActive())
+		{
+			timeRemaining = gameRunnerGraphics.StopClock();
+		}
+		else if (!isSettingsShowing && !uIManager.IsMenuActive())
+		{
+			gameRunnerGraphics.StartClock(timeRemaining);
+		}
+	}
+
 	public void OnSave()
 	{
+		gameDataManager.SaveInt(timeRemaining, TIME_REMAINING);
+		string cardCollection = gameRunnerGraphics.GetCardCollectionAsString();
+		gameDataManager.SaveString(cardCollection, CARD_COLLECTION);
+
 	}
 
 	public void OnLoad()
 	{
+		timeRemaining = gameDataManager.LoadInt(TIME_REMAINING);
+		string cardCollectionString = gameDataManager.LoadString(CARD_COLLECTION);
+		LoadGame(timeRemaining, cardCollectionString);
+		
 	}
 
 }

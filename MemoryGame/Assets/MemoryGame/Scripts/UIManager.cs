@@ -9,8 +9,11 @@ public class UIManager : MonoBehaviour
 	private const string END_GAME_WIN_MSG = "YOU WON!";
 	private const string END_GAME_LOSE_MSG = "GAME OVER!";
 	private const string RESTART = "Restart";
+
+	private const string SAVE_BUTTON = "SaveButton";
 	
 	public Action OnStartGame;
+	public Action<bool> OnSettingsAction;
 	public Action OnSaveAction;
 	public Action OnLoadAction;
 	
@@ -24,6 +27,10 @@ public class UIManager : MonoBehaviour
 	public void StartNewGame()
 	{
 		menu.SetActive(false);
+		if (isSettingsShowing)
+		{
+			OnSettingsClicked();
+		}
 		if (OnStartGame != null)
 		{
 			OnStartGame.Invoke();
@@ -38,15 +45,33 @@ public class UIManager : MonoBehaviour
 		menu.SetActive(true);
 	}
 
+	public bool IsMenuActive()
+	{
+		return menu.activeSelf;
+	}
+
 	public void OnSettingsClicked()
 	{
 		isSettingsShowing = !isSettingsShowing;
 		settingsScreen.SetActive(isSettingsShowing);
+		GameObject saveButton = settingsScreen.transform.Find(SAVE_BUTTON).gameObject;
+		if (IsMenuActive())
+		{
+			
+			saveButton.SetActive(false);
+		}
+		else
+		{
+			saveButton.SetActive(true);
+		}
+		if (OnSettingsAction != null)
+		{
+			OnSettingsAction.Invoke(isSettingsShowing);
+		}
 	}
 
 	public void OnSave()
 	{
-		Debug.LogError("Save Pressed");
 		if (OnSaveAction != null)
 		{
 			OnSaveAction.Invoke();

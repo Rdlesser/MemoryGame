@@ -65,12 +65,32 @@ public class GameDataManager
 
     public int LoadInt(string key)
     {
-        return 0;
+        if (isPersistentData && PlayerPrefs.HasKey(key))
+        {
+            return PlayerPrefs.GetInt(key);
+        }
+
+        if (!isPersistentData && intDict.ContainsKey(key))
+        {
+            return intDict[key];
+        }
+        Debug.LogError("Tried to load int value not in memory");
+        return -1;
     }
     
     public float LoadFloat(string key)
     {
-        return 0.0f;
+        if (isPersistentData && PlayerPrefs.HasKey(key))
+        {
+            return PlayerPrefs.GetFloat(key);
+        }
+
+        if (!isPersistentData && floatDict.ContainsKey(key))
+        {
+            return floatDict[key];
+        }
+        Debug.LogError("Tried to load float value not in memory");
+        return -1.0f;
     }
     
     public bool LoadBool(string key)
@@ -83,13 +103,22 @@ public class GameDataManager
         {
             return boolDict[key];
         }
-        Debug.LogError("Tried to Load bool value not in memory");
+        Debug.LogError("Tried to load bool value not in memory");
         return false;
 
     }
     
     public string LoadString(string key)
     {
+        if (isPersistentData && PlayerPrefs.HasKey(key))
+        {
+            return PlayerPrefs.GetString(key);
+        }
+        if (!isPersistentData && stringDict.ContainsKey(key))
+        {
+            return stringDict[key];
+        }
+        Debug.LogError("Tried to load string value not in memory");
         return "";
     }
 }

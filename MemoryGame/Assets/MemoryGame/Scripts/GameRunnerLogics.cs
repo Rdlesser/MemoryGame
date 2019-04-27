@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using NUnit.Framework;
 using Random = UnityEngine.Random;
 
 public class GameRunnerLogics
@@ -13,34 +14,66 @@ public class GameRunnerLogics
 	private bool isFirstChoice = true;
 	private eCard firstChoice;
 	private eCard secondChoice;
+	
 	public Action<bool> OnMatch;
 
 	private int requiredMatchesToWin;
 
-	public void InitializeGameLogic(GameConfig gameConfig)
+	public void InitializeGameLogic(GameConfig gameConfig, string cardCollectionString = null)
 	{
 		width = gameConfig.boardWidth;
 		height = gameConfig.boardHeight;
 		this.gameConfig = gameConfig;
 		
 		board = new eCard[width, height];
-		FillBoard();
+		List<eCard> cardCollection = ParseCardCollectionFromString(cardCollectionString);
+		FillBoard(cardCollection);
 		requiredMatchesToWin = width * height / 2;
 	}
 
-	private void FillBoard()
+	private List<eCard> ParseCardCollectionFromString(string cardCollectionString)
 	{
-		List<eCard> allCards = new List<eCard>();
-		// Populate allCards with the total amount of cards based on the data in cardConfig
-		foreach (var cardDef in gameConfig.cardConfig.cardDefinitions)
+		List<eCard> cardCollection = null;
+		if (cardCollectionString != null)
 		{
-			for (int i = 0; i < cardDef.appearences; i++)
+			cardCollection = new List<eCard>();
+			
+			for (int i = 0; i < height * width; i++)
 			{
-				allCards.Add(cardDef.cardType);
+				int commaIndex = cardCollectionString.IndexOf(",");
+				string cardType = cardCollectionString.Substring(1, commaIndex - 1);
+				int cardInt = Int32.Parse(cardType);
+				cardCollection.Add((eCard) cardInt);
+				int closeBracketIndex = cardCollectionString.IndexOf(")");
+				cardCollectionString = cardCollectionString.Substring(closeBracketIndex + 1);
 			}
 		}
-		// Shuffle the allCards List
-		allCards = allCards.OrderBy( x => Random.value ).ToList( );
+
+		return cardCollection;
+	}
+
+	private void FillBoard(List<eCard> cardCollection = null)
+	{
+		List<eCard> allCards;
+		if (cardCollection == null)
+		{
+			allCards = new List<eCard>();
+			// Populate allCards with the total amount of cards based on the data in cardConfig
+			foreach (var cardDef in gameConfig.cardConfig.cardDefinitions)
+			{
+				for (int i = 0; i < cardDef.appearences; i++)
+				{
+					allCards.Add(cardDef.cardType);
+				}
+			}
+			// Shuffle the allCards List
+			allCards = allCards.OrderBy( x => Random.value ).ToList( );
+			
+		}
+		else
+		{
+			allCards = cardCollection;
+		}
 		for (int i = 0; i < width; i++)
 		{
 			for (int j = 0; j < height; j++)
