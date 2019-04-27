@@ -163,6 +163,7 @@
     <Compile Include="Assets\MemoryGame\Scripts\GameManager.cs" />
     <Compile Include="Assets\MemoryGame\Scripts\GameRunnerGraphics.cs" />
     <Compile Include="Assets\MemoryGame\Scripts\GameRunnerLogics.cs" />
+    <Compile Include="Assets\MemoryGame\Scripts\SoundManager.cs" />
     <Compile Include="Assets\MemoryGame\Scripts\UIManager.cs" />
     <None Include="Assets\GoKit-master\Assets\Plugins\GoKit\easing\easeEquationsLicense.txt" />
     <None Include="Assets\GoKit-master\ProjectSettings\ProjectVersion.txt" />

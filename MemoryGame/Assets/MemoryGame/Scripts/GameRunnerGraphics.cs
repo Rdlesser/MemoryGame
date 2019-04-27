@@ -157,11 +157,6 @@ public class GameRunnerGraphics: MonoBehaviour
             return;
         }
 
-        // TODO: call card script to be added to the prefab.
-        // this will call card.getType and return it to the gamemanager.
-        // TODO: card click animation
-        // TODO: change sprite to appropriate sprite
-        // TODO: play card flip sound
         card.GetComponent<Button>().enabled = false;
         card.GetComponent<Image>().sprite = card.GetComponent<Card>().cardImage;
         card.GetComponent<Card>().isFlipped = true;

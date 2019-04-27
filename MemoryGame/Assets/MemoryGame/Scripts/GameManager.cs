@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private GameRunnerGraphics gameRunnerGraphics;
 	[SerializeField] private GameConfig gameConfig;
 	[SerializeField] private UIManager uIManager;
+	[SerializeField] private SoundManager soundManager;
 
 	private const string TIME_REMAINING = "time";
 	private const string CARD_COLLECTION = "card_collection";
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
 
 	private void OnCardClicked(eCard cardType)
 	{
+		soundManager.OnCardFlipped();
 		gameRunnerLogics.OnCardClicked(cardType);
 	}
 
