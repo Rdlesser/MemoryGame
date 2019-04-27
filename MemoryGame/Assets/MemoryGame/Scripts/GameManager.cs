@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
 		{
 			targetTime = gameConfig.targetTime;
 		}
-		gameRunnerGraphics.StartClock(gameConfig.targetTime);
+		gameRunnerGraphics.StartClock(targetTime);
 	}
 
 	private void OnCardClicked(eCard cardType)
