@@ -70,6 +70,12 @@ public class UIManager : MonoBehaviour
 		}
 	}
 
+	public void ForceCloseSettings()
+	{
+		isSettingsShowing = false;
+		settingsScreen.SetActive(isSettingsShowing);
+	}
+
 	public void OnSave()
 	{
 		if (OnSaveAction != null)

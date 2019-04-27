@@ -17,9 +17,10 @@ public class GameRunnerLogics
 	
 	public Action<bool> OnMatch;
 
-	private int requiredMatchesToWin;
+	public int requiredMatchesToWin { get; set; }
 
-	public void InitializeGameLogic(GameConfig gameConfig, string cardCollectionString = null)
+	public void InitializeGameLogic(GameConfig gameConfig, string cardCollectionString = null,
+		int requiredMatches = -1)
 	{
 		width = gameConfig.boardWidth;
 		height = gameConfig.boardHeight;
@@ -28,7 +29,7 @@ public class GameRunnerLogics
 		board = new eCard[width, height];
 		List<eCard> cardCollection = ParseCardCollectionFromString(cardCollectionString);
 		FillBoard(cardCollection);
-		requiredMatchesToWin = width * height / 2;
+		requiredMatchesToWin = requiredMatches > 0? requiredMatches : width * height / 2;
 	}
 
 	private List<eCard> ParseCardCollectionFromString(string cardCollectionString)

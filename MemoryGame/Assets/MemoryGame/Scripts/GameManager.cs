@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
 	private const string TIME_REMAINING = "time";
 	private const string CARD_COLLECTION = "card_collection";
+	private const string REQUIRED_MATCHES = "required_matches";
 	
 	private GameRunnerLogics gameRunnerLogics;
 	private GameDataManager gameDataManager;
@@ -40,11 +41,13 @@ public class GameManager : MonoBehaviour
 	
 	}
 
-	private void LoadGame(int time, string cardCollection)
+	private void LoadGame(int time, string cardCollection, int requiredMatches)
 	{
-		gameRunnerLogics.InitializeGameLogic(gameConfig, cardCollection);
+		gameRunnerLogics.InitializeGameLogic(gameConfig, cardCollection, requiredMatches);
 		gameRunnerGraphics.InitializeEnvironment(gameRunnerLogics.GetBoard(), cardCollection);
 		gameRunnerGraphics.StopClock();
+		uIManager.ForceCloseSettings();
+		gameRunnerGraphics.AllowUserInput(true);
 		StartClock(time);
 	}
 
@@ -121,6 +124,7 @@ public class GameManager : MonoBehaviour
 		gameDataManager.SaveInt(timeRemaining, TIME_REMAINING);
 		string cardCollection = gameRunnerGraphics.GetCardCollectionAsString();
 		gameDataManager.SaveString(cardCollection, CARD_COLLECTION);
+		gameDataManager.SaveInt(gameRunnerLogics.requiredMatchesToWin, REQUIRED_MATCHES);
 
 	}
 
@@ -128,7 +132,8 @@ public class GameManager : MonoBehaviour
 	{
 		timeRemaining = gameDataManager.LoadInt(TIME_REMAINING);
 		string cardCollectionString = gameDataManager.LoadString(CARD_COLLECTION);
-		LoadGame(timeRemaining, cardCollectionString);
+		int requiredMatches = gameDataManager.LoadInt(REQUIRED_MATCHES);
+		LoadGame(timeRemaining, cardCollectionString, requiredMatches);
 		
 	}
 
