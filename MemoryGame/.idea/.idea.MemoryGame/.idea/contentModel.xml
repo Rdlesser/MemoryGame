@@ -138,6 +138,9 @@
       <e p="Assets/MemoryGame" t="Include">
         <e p="Scripts" t="Include">
           <e p="Card.cs" t="Include" />
+          <e p="Editor" t="Include">
+            <e p="TestDataManager.cs" t="Include" />
+          </e>
           <e p="GameConfig.cs" t="Include" />
           <e p="GameDataManager.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
